@@ -12,7 +12,7 @@ interface ProfileInfoRepositoryInterface
 
     public function getUsersProfileInfo(User $user, string $key):?ProfileInfo;
 
-    public function setProfileInfo(User $user, string $key, string $value):void;
+    public function setProfileInfo(User $user, string $key, string $value, bool $lock = false):void;
 
     public function deleteProfileInfo(User $user, string $key):void;
 }

@@ -31,12 +31,12 @@ class ProfilingQuestionRepository implements ProfilingQuestionRepositoryInterfac
         return ProfilingQuestion::create($attributes);
     }
 
-    public function getAllProfilingQuestions($columns = ['*']): Collection
+    public function getAllProfilingQuestions($columns = ['*']): null|Collection
     {
         return ProfilingQuestion::all($columns);
     }
 
-    public function getProfilingQuestionById(int $id, array $columns = ['*']): ProfilingQuestion
+    public function getProfilingQuestionById(int $id, array $columns = ['*']): null|ProfilingQuestion
     {
         return ProfilingQuestion::find($id, $columns);
     }

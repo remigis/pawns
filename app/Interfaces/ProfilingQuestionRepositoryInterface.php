@@ -10,7 +10,7 @@ interface ProfilingQuestionRepositoryInterface
 
     public function createProfilingQuestion(array $attributes):ProfilingQuestion;
 
-    public function getAllProfilingQuestions(): Collection;
+    public function getAllProfilingQuestions(): null|Collection;
 
-    public function getProfilingQuestionById(int $id, array $columns = ['*']): ProfilingQuestion;
+    public function getProfilingQuestionById(int $id, array $columns = ['*']): null|ProfilingQuestion;
 }

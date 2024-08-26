@@ -29,8 +29,8 @@ class UpdateProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'answers' => ['required', 'array', new ProfileCanBeUpdatedOnceADay()],
-            'answers.*.questionId' => 'required|exists:profiling_questions,id',
+            'answers' => ['bail', 'required', 'array', new ProfileCanBeUpdatedOnceADay()],
+            'answers.*.questionId' => 'bail|required|exists:profiling_questions,id',
             'answers.*.answer' => ['required'],
             'answers.*' => [new AnswerRule()],
         ];

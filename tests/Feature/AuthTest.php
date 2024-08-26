@@ -85,6 +85,7 @@ class AuthTest extends TestCase
      */
     public function test_user_can_login()
     {
+        unset($this->testUserData['password_confirmation']);
         $authService = resolve(AuthService::class);
         $authService->registerNewUser($this->testUserData);
 
@@ -99,6 +100,7 @@ class AuthTest extends TestCase
 
     public function test_user_cant_login_with_bad_password()
     {
+        unset($this->testUserData['password_confirmation']);
         $authService = resolve(AuthService::class);
         $authService->registerNewUser($this->testUserData);
 

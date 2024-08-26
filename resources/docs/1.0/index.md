@@ -1,0 +1,8 @@
+- ## Get Started
+    - [Registration](/{{route}}/{{version}}/registration)
+    - [Login](/{{route}}/{{version}}/login)
+    - [Get Profiling Questions](/{{route}}/{{version}}/get_profiling_questions)
+    - [Get Wallet](/{{route}}/{{version}}/get_wallet)
+    - [Update Profile](/{{route}}/{{version}}/update_profile)
+    - [Get Transactions](/{{route}}/{{version}}/get_transactions)
+    - [Claim Transaction](/{{route}}/{{version}}/claim_transaction)

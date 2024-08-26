@@ -35,6 +35,7 @@ class ProfilingQuestionsTest extends TestCase
      */
     public function test_authenticated_user_can_get_profiling_questions()
     {
+        unset($this->testUserData['password_confirmation']);
         $authService = resolve(AuthService::class);
         $user = $authService->registerNewUser($this->testUserData);
 

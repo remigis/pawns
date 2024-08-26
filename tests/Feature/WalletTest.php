@@ -30,6 +30,7 @@ class WalletTest extends TestCase
     }
     public function test_user_can_retrieve_wallet_info()
     {
+        unset($this->testUserData['password_confirmation']);
         $authService = resolve(AuthService::class);
         $user = $authService->registerNewUser($this->testUserData);
 

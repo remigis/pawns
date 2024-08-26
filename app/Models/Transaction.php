@@ -25,6 +25,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereFrom($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction wherePoints($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereTo($value)
+ * @property string $claimed_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereClaimedAt($value)
  * @mixin \Eloquent
  */
 class Transaction extends Model
@@ -36,5 +38,6 @@ class Transaction extends Model
         'to',
         'points',
         'claimed',
+        'claimed_at',
     ];
 }

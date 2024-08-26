@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('from')->nullable();
             $table->string('to');
             $table->boolean('claimed')->default(false);
+            $table->date('claimed_at')->nullable();
             $table->timestamps();
         });
     }

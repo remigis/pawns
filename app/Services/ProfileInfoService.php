@@ -10,6 +10,9 @@ use Illuminate\Support\Carbon;
 class ProfileInfoService
 {
 
+    /**
+     * @throws \Throwable
+     */
     public function updateProfileFromAnswers(array $answers): void
     {
         $profileInfoRepository = resolve(ProfileInfoRepository::class);
@@ -22,7 +25,8 @@ class ProfileInfoService
         $profileInfoRepository->setProfileInfo(
             Auth::user(),
             ProfileInfoRepository::PROFILE_INFO_KEY_UPDATED_AT,
-            Carbon::now()->toDateString()
+            Carbon::now()->toDateString(),
+            true,
         );
     }
 

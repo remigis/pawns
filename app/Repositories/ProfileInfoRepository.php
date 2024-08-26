@@ -6,6 +6,7 @@ use App\Interfaces\ProfileInfoRepositoryInterface;
 use App\Models\ProfileInfo;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 
 class ProfileInfoRepository implements ProfileInfoRepositoryInterface
 {
@@ -24,9 +25,33 @@ class ProfileInfoRepository implements ProfileInfoRepositoryInterface
         return ProfileInfo::where('user_id', $user->id)->where('key', $key)->first();
     }
 
-    public function setProfileInfo(User $user, string $key, mixed $value): void
+    /**
+     * Lock works only if row exists in database!!!!
+     *
+     * @throws \Throwable
+     */
+    public function setProfileInfo(User $user, string $key, mixed $value, bool $lock = false): void
     {
-        ProfileInfo::updateOrCreate(['user_id' => $user->id, 'key' => $key], ['value' => $value]);
+        if($lock){
+            DB::transaction(function () use ($user, $key, $value) {
+                $profileSetting = ProfileInfo::where('user_id', $user->id)
+                                             ->where('key', $key)
+                                             ->lockForUpdate()
+                                             ->first();
+                if ($profileSetting) {
+                    $profileSetting->update(['value' => $value]);
+                } else {
+                    ProfileInfo::create([
+                        'user_id' => $user->id,
+                        'key' => $key,
+                        'value' => $value,
+                    ]);
+                }
+            });
+        }else{
+            ProfileInfo::updateOrCreate(['user_id' => $user->id, 'key' => $key], ['value' => $value]);
+        }
+
     }
 
     public function deleteProfileInfo(User $user, string $key): void

@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Repositories\UserRepository;
 use App\Services\AuthService;
 use Exception;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -23,6 +24,8 @@ class AuthController extends Controller
                 'user' => $user,
             ], 201);
         }catch (Exception $exception){
+            return response()->json(['message' => $exception->getMessage()], $exception->status);
+        }catch(GuzzleException $exception){
             return response()->json(['message' => $exception->getMessage()], $exception->status);
         }
     }

@@ -18,9 +18,15 @@ class WalletRepository implements WalletRepositoryInterface
         return $user->wallet()->first($columns);
     }
 
-    public function createUsersWallet(User $user, $balance = 0): void
+    /**
+     * @param   \App\Models\User  $user
+     * @param                     $balance
+     *
+     * @return \App\Models\Wallet
+     */
+    public function createUsersWallet(User $user, $balance = 0): Wallet
     {
-        $user->wallet()->create(['balance' => $balance]);
+        return $user->wallet()->create(['balance' => $balance]);
     }
 
     /**

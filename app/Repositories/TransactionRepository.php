@@ -11,9 +11,9 @@ use Illuminate\Database\Eloquent\Collection;
 class TransactionRepository implements TransactionRepositoryInterface
 {
 
-    public function createTransaction($from, $to, $points): void
+    public function createTransaction($from, $to, $points): Transaction
     {
-        Transaction::create([
+        return Transaction::create([
             'from' => $from,
             'to' => $to,
             'points' => $points,
